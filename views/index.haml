@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title #{@index}
+  %body
+    %h1 Sample kakeibo.
+    %ul
+      - @entries.each do |entry|
+        %li #{entry.mokuteki} (#{timefmt(entry.created_at)})
+    %p
+      %form{ action: "/add", method: "post"}
+        %input{ type: "textfield", name: "mokuteki"}
+        %input{ type: "submit", value: "send"}
+
