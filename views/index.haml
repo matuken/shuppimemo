@@ -6,9 +6,27 @@
     %h1 Sample kakeibo.
     %ul
       - @entries.each do |entry|
-        %li #{entry.mokuteki} (#{timefmt(entry.created_at)})
+        %li 
+          %form{ action: "/meisai", method: "post"}
+            %p #{entry.id} #{entry.mokuteki} (#{timefmt(entry.date)}) #{entry.kingaku} #{entry.currency} [#{entry.siharaisaki}] 
+            %input{ type: "hidden", name: "id", value: "#{entry.id}" }
+            %input{ type: "hidden", name: "mokuteki", value: "#{entry.mokuteki}" }
+            %input{ type: "hidden", name: "date", value: "#{timefmt(entry.date)}" }
+            %input{ type: "hidden", name: "kingaku", value: "#{entry.kingaku}" }
+            %input{ type: "hidden", name: "currency", value: "#{entry.currency}" }
+            %input{ type: "hidden", name: "siharaisaki", value: "#{entry.siharaisaki}" }
+            %input{ type: "submit", value: "meisai"}
     %p
       %form{ action: "/add", method: "post"}
+        %p 目的 
         %input{ type: "textfield", name: "mokuteki"}
+        %p 日付 
+        %input{ type: "textfield", name: "date"}
+        %p 金額 
+        %input{ type: "textfield", name: "kingaku"}
+        %p 通貨単位 
+        %input{ type: "textfield", name: "currency"}
+        %p 支払先 
+        %input{ type: "textfield", name: "siharaisaki"}
         %input{ type: "submit", value: "send"}
 

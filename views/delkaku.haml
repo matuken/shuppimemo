@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title #{@index}
+  %body
+    %p 
+      %form{ action: "/delete", method: "post"}
+        %input{ type: "hidden", name: "id", value: "#{@id}"}
+        %p 目的 
+        %input{ type: "textfield", name: "mokuteki", value: "#{@mokuteki}"}
+        %p 日付 
+        %input{ type: "textfield", name: "date", value: "#{@date}"}
+        %p 金額 
+        %input{ type: "textfield", name: "kingaku", value: "#{@kingaku}"}
+        %p 通貨単位 
+        %input{ type: "textfield", name: "currency", value: "#{@currency}"}
+        %p 支払先 
+        %input{ type: "textfield", name: "siharaisaki", value: "#{@siharaisaki}"}
+        %input{ type: "submit", value: "delete"}
+    %p
+      %form{ action: "/", method: "get"}
+        %input{ type: "submit", value: "return"}
+

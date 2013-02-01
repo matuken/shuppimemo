@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title #{@index}
+  %body
+    %h1 Sample kakeibo.
+    %ul
+      - @entries.each do |entry|
+        %li #{entry.mokuteki} (#{timefmt(entry.date)}) #{entry.kingaku} #{entry.currency} [#{entry.siharaisaki}] 
+    %p
+      %form{ action: "/add", method: "post"}
+        %p 目的 
+        %input{ type: "textfield", name: "mokuteki"}
+        %p 日付 
+        %input{ type: "textfield", name: "date"}
+        %p 金額 
+        %input{ type: "textfield", name: "kingaku"}
+        %p 通貨単位 
+        %input{ type: "textfield", name: "currency"}
+        %p 支払先 
+        %input{ type: "textfield", name: "siharaisaki"}
+        %input{ type: "submit", value: "send"}
+
