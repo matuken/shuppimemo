@@ -3,27 +3,48 @@
   %head
     %title #{@index}
   %body
-    %p
+    %table
       %form{ action: "/update", method: "post"}
-        %input{ type: "hidden", name: "id", value: "#{@id}"}
-        %p 目的 
-        %input{ type: "textfield", name: "mokuteki", value: "#{@mokuteki}"}
-        %p 日付 
-        %input{ type: "textfield", name: "date", value: "#{@date}"}
-        %p 金額 
-        %input{ type: "textfield", name: "kingaku", value: "#{@kingaku}"}
-        %p 通貨単位 
-        %input{ type: "textfield", name: "currency", value: "#{@currency}"}
-        %p 支払先 
-        %input{ type: "textfield", name: "siharaisaki", value: "#{@siharaisaki}"}
-        %input{ type: "submit", value: "update"}
-    %p
-      %form{ action: "/delkaku", method: "post"}
-        %input{ type: "hidden", name: "id", value: "#{@id}"}
-        %input{ type: "hidden", name: "mokuteki", value: "#{@mokuteki}"}
-        %input{ type: "hidden", name: "date", value: "#{@date}"}
-        %input{ type: "hidden", name: "kingaku", value: "#{@kingaku}"}
-        %input{ type: "hidden", name: "currency", value: "#{@currency}"}
-        %input{ type: "hidden", name: "siharaisaki", value: "#{@siharaisaki}"}
-        %input{ type: "submit", value: "delete"}
+        %tr
+          %td
+            %input{ type: "hidden", name: "id", value: "#{@id}"}
+            目的 
+          %td
+            %input{ type: "textfield", name: "mokuteki", value: "#{@mokuteki}"}
+        %tr
+          %td
+            日付 
+          %td
+            %input{ type: "textfield", name: "date", value: "#{@date}"}
+        %tr
+          %td
+            金額 
+          %td
+            %input{ type: "textfield", name: "kingaku", value: "#{@kingaku}"}
+        %tr
+          %td
+            通貨単位 
+          %td
+            %input{ type: "textfield", name: "currency", value: "#{@currency}"}
+        %tr
+          %td
+            支払先 
+          %td
+            %input{ type: "textfield", name: "siharaisaki", value: "#{@siharaisaki}"}
+        %tr
+          %td
+            %input{ type: "submit", value: "update"}
+          %td
+      %table
+        %form{ action: "/delkaku", method: "post"}
+          %tr
+            %td
+              %input{ type: "hidden", name: "id", value: "#{@id}"}
+              %input{ type: "hidden", name: "mokuteki", value: "#{@mokuteki}"}
+              %input{ type: "hidden", name: "date", value: "#{@date}"}
+              %input{ type: "hidden", name: "kingaku", value: "#{@kingaku}"}
+              %input{ type: "hidden", name: "currency", value: "#{@currency}"}
+              %input{ type: "hidden", name: "siharaisaki", value: "#{@siharaisaki}"}
+              %input{ type: "submit", value: "delete"}
+            %td
 
