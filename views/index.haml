@@ -4,29 +4,44 @@
     %title #{@index}
   %body
     %h1 Sample kakeibo.
-    %ul
+    %table
       - @entries.each do |entry|
-        %li 
-          %form{ action: "/meisai", method: "post"}
-            %p #{entry.id} #{entry.mokuteki} (#{timefmt(entry.date)}) #{entry.kingaku} #{entry.currency} [#{entry.siharaisaki}] 
-            %input{ type: "hidden", name: "id", value: "#{entry.id}" }
-            %input{ type: "hidden", name: "mokuteki", value: "#{entry.mokuteki}" }
-            %input{ type: "hidden", name: "date", value: "#{timefmt(entry.date)}" }
-            %input{ type: "hidden", name: "kingaku", value: "#{entry.kingaku}" }
-            %input{ type: "hidden", name: "currency", value: "#{entry.currency}" }
-            %input{ type: "hidden", name: "siharaisaki", value: "#{entry.siharaisaki}" }
-            %input{ type: "submit", value: "meisai"}
+        %tr
+          %td
+            %form{ action: "/meisai", method: "post"}
+              #{entry.id} #{entry.mokuteki} (#{timefmt(entry.date)}) #{entry.kingaku} #{entry.currency} [#{entry.siharaisaki}] 
+              %input{ type: "hidden", name: "id", value: "#{entry.id}" }
+              %input{ type: "hidden", name: "mokuteki", value: "#{entry.mokuteki}" }
+              %input{ type: "hidden", name: "date", value: "#{timefmt(entry.date)}" }
+              %input{ type: "hidden", name: "kingaku", value: "#{entry.kingaku}" }
+              %input{ type: "hidden", name: "currency", value: "#{entry.currency}" }
+              %input{ type: "hidden", name: "siharaisaki", value: "#{entry.siharaisaki}" }
+              %input{ type: "submit", value: "meisai"}
     %p
       %form{ action: "/add", method: "post"}
-        %p 目的 
-        %input{ type: "textfield", name: "mokuteki"}
-        %p 日付 
-        %input{ type: "textfield", name: "date"}
-        %p 金額 
-        %input{ type: "textfield", name: "kingaku"}
-        %p 通貨単位 
-        %input{ type: "textfield", name: "currency"}
-        %p 支払先 
-        %input{ type: "textfield", name: "siharaisaki"}
-        %input{ type: "submit", value: "send"}
+        %table
+          %tr
+            %td 目的 
+            %td 
+              %input{ type: "textfield", name: "mokuteki"}
+          %tr
+            %td  日付 
+            %td
+              %input{ type: "textfield", name: "date"}
+          %tr
+            %td 金額
+            %td
+              %input{ type: "textfield", name: "kingaku"}
+          %tr
+            %td 通貨単位
+            %td
+              %input{ type: "textfield", name: "currency"}
+          %tr
+            %td 支払先
+            %td
+              %input{ type: "textfield", name: "siharaisaki"}
+          %tr
+            %td
+            %td
+              %input{ type: "submit", value: "send"}
 
