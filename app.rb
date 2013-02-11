@@ -5,24 +5,25 @@ if development?
 	require 'sinatra/reloader'
 end
 
-Sequel::Model.plugin(:schema)
+#Sequel::Model.plugin(:schema)
 
 Sequel.sqlite('db/shuppiMemo.db')
 class Entries < Sequel::Model
 	plugin :timestamps, :update_on_create => true
-	unless table_exists?
-		set_schema do
-			primary_key :id
-			string :mokuteki
-			date  :date
-			int :kingaku
-			string :currency
-			string :siharaisaki
-			timestamp :created_at
-			timestamp :updated_at
-		end
-		create_table
-	end
+#	unless table_exists?
+#		set_schema do
+#			primary_key :id
+#			string :mokuteki
+#			date  :date
+#			int :kingaku
+#			string :currency
+#			string :siharaisaki
+#			string :shudan
+#			timestamp :created_at
+#3			timestamp :updated_at
+#		end
+#		create_table
+#end
 end
 
 get '/' do
@@ -39,6 +40,8 @@ post '/meisai' do
 	@kingaku = params[:kingaku]
 	@currency = params[:currency]
 	@siharaisaki = params[:siharaisaki]
+	@shudan = params[:shudan]
+	@himoku = params[:himoku]
 	haml :meisai
 end
 
@@ -50,6 +53,8 @@ post '/delkaku' do
 	@kingaku = params[:kingaku]
 	@currency = params[:currency]
 	@siharaisaki = params[:siharaisaki]
+	@shudan = params[:shudan]
+	@himoku = params[:himoku]
 	haml :delkaku
 end
 
@@ -58,7 +63,8 @@ post '/add' do
 	@entry = Entries.new  \
 	                     :mokuteki => Sanitize.clean(params[:mokuteki]), :date => Sanitize.clean(params[:date]), \
                          :kingaku => Sanitize.clean(params[:kingaku]), :currency => Sanitize.clean(params[:currency]), \
-						 :siharaisaki => Sanitize.clean(params[:siharaisaki])
+						 :siharaisaki => Sanitize.clean(params[:siharaisaki]) , :shudan => Sanitize.clean(params[:shudan]), \
+                         :himoku => Sanitize.clean(params[:himoku]) 
 
 	@entry.save
 	redirect '/'
@@ -68,7 +74,8 @@ post '/update' do
 	@entry = Entries[params[:id]]
 	@entry.set({ :mokuteki => Sanitize.clean(params[:mokuteki]), :date => Sanitize.clean(params[:date]), \
                  :kingaku => Sanitize.clean(params[:kingaku]), :currency => Sanitize.clean(params[:currency]), \
-		    	 :siharaisaki => Sanitize.clean(params[:siharaisaki]) })
+		    	 :siharaisaki => Sanitize.clean(params[:siharaisaki]), :shudan => Sanitize.clean(params[:shudan]), \
+	             :himoku => Sanitize.clean(params[:himoku]) })
 
 	@entry.save
 	redirect '/'

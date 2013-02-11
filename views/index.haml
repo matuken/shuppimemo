@@ -3,19 +3,21 @@
   %head
     %title #{@index}
   %body
-    %h1 Sample kakeibo.
+    %h1 Shuppi kakeibo.
     %table
       - @entries.each do |entry|
         %tr
           %td
             %form{ action: "/meisai", method: "post"}
-              #{entry.id} #{entry.mokuteki} (#{timefmt(entry.date)}) #{entry.kingaku} #{entry.currency} [#{entry.siharaisaki}] 
+              #{entry.id} #{entry.mokuteki} (#{timefmt(entry.date)}) #{entry.kingaku} #{entry.currency} [#{entry.siharaisaki}] [#{entry.shudan}] [#{entry.himoku}] 
               %input{ type: "hidden", name: "id", value: "#{entry.id}" }
               %input{ type: "hidden", name: "mokuteki", value: "#{entry.mokuteki}" }
               %input{ type: "hidden", name: "date", value: "#{timefmt(entry.date)}" }
               %input{ type: "hidden", name: "kingaku", value: "#{entry.kingaku}" }
               %input{ type: "hidden", name: "currency", value: "#{entry.currency}" }
               %input{ type: "hidden", name: "siharaisaki", value: "#{entry.siharaisaki}" }
+              %input{ type: "hidden", name: "shudan", value: "#{entry.shudan}" }
+              %input{ type: "hidden", name: "himoku", value: "#{entry.himoku}" }
               %input{ type: "submit", value: "meisai"}
     %p
       %form{ action: "/add", method: "post"}
@@ -40,6 +42,14 @@
             %td 支払先
             %td
               %input{ type: "textfield", name: "siharaisaki"}
+          %tr
+            %td 支払手段
+            %td
+              %input{ type: "textfield", name: "shudan"}
+          %tr
+            %td 費目 
+            %td
+              %input{ type: "textfield", name: "himoku"}
           %tr
             %td
             %td
