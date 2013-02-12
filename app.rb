@@ -40,6 +40,14 @@ get '/date/:yyyymmdd' do
 	haml :list
 end
 
+get '/himoku/:himokuname' do
+	@index = 'shuppiMemo - himoku(This month)'
+	@date = Time.now.strftime("%Y-%m")
+	@himoku = params[:himokuname]
+    @entries = Entries.all
+	haml :himoku
+end
+
 post '/meisai' do
 	@index = 'shuppiMemo - meisai'
 	@id = params[:id]

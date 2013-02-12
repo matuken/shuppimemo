@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %title #{@index}
+  %body
+    %h1 #{@index} #{@himoku} #{@date}
+    %table
+      - @entries.each do |entry|
+        - if timefmt(entry.date).index(@date.to_s) 
+          -if entry.himoku.index(@himoku.to_s)
+            %tr
+              %td
+                %form{ action: "/meisai", method: "post"}
+                  #{entry.id} #{entry.mokuteki} (#{timefmt(entry.date)}) #{entry.kingaku} #{entry.currency} [#{entry.siharaisaki}] [#{entry.shudan}] [#{entry.himoku}] 
+                  %input{ type: "hidden", name: "id", value: "#{entry.id}" }
+                  %input{ type: "hidden", name: "mokuteki", value: "#{entry.mokuteki}" }
+                  %input{ type: "hidden", name: "date", value: "#{timefmt(entry.date)}" }
+                  %input{ type: "hidden", name: "kingaku", value: "#{entry.kingaku}" }
+                  %input{ type: "hidden", name: "currency", value: "#{entry.currency}" }
+                  %input{ type: "hidden", name: "siharaisaki", value: "#{entry.siharaisaki}" }
+                  %input{ type: "hidden", name: "shudan", value: "#{entry.shudan}" }
+                  %input{ type: "hidden", name: "himoku", value: "#{entry.himoku}" }
+                  %input{ type: "submit", value: "meisai"}
+    %p
+      %form{ action: "/", method: "get"}
+        %input{ type: "submit", value: "top"}
+
