@@ -3,11 +3,10 @@
   %head
     %title #{@index}
   %body
-    %h1 Shuppi kakeibo.
-    %h3 本日分の入力
+    %h1 #{@index} #{@date}
     %table
       - @entries.each do |entry|
-        - if timefmt(entry.date) == timefmt(Time.now)
+        - if timefmt(entry.date).index(@date.to_s) 
           %tr
             %td
               %form{ action: "/meisai", method: "post"}
@@ -22,38 +21,6 @@
                 %input{ type: "hidden", name: "himoku", value: "#{entry.himoku}" }
                 %input{ type: "submit", value: "meisai"}
     %p
-      %form{ action: "/add", method: "post"}
-        %table
-          %tr
-            %td 目的 
-            %td 
-              %input{ type: "textfield", name: "mokuteki"}
-          %tr
-            %td  日付 
-            %td
-              %input{ type: "textfield", name: "date"}
-          %tr
-            %td 金額
-            %td
-              %input{ type: "textfield", name: "kingaku"}
-          %tr
-            %td 通貨単位
-            %td
-              %input{ type: "textfield", name: "currency"}
-          %tr
-            %td 支払先
-            %td
-              %input{ type: "textfield", name: "siharaisaki"}
-          %tr
-            %td 支払手段
-            %td
-              %input{ type: "textfield", name: "shudan"}
-          %tr
-            %td 費目 
-            %td
-              %input{ type: "textfield", name: "himoku"}
-          %tr
-            %td
-            %td
-              %input{ type: "submit", value: "add"}
+      %form{ action: "/", method: "get"}
+        %input{ type: "submit", value: "top"}
 

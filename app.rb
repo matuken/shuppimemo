@@ -32,6 +32,14 @@ get '/' do
 	haml :index
 end
 
+get '/date/:yyyymmdd' do
+	@index = 'shuppiMemo - daily'
+	@date = params[:yyyymmdd]
+#   @entries = Entries.filter(:date => params[:yyyymmdd]).all
+    @entries = Entries.all
+	haml :list
+end
+
 post '/meisai' do
 	@index = 'shuppiMemo - meisai'
 	@id = params[:id]
