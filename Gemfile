@@ -5,6 +5,7 @@ gem 'haml'
 gem 'sanitize'
 gem 'heroku'
 gem 'sequel'
+gem 'rake'
 
 group :production do
 	gem 'pg'
