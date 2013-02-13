@@ -96,11 +96,11 @@ end
 
 
 post '/add' do
-	@entry = Entries.new  \
-	                     :mokuteki => Sanitize.clean(params[:mokuteki]), :date => Sanitize.clean(params[:date]), \
-                         :kingaku => Sanitize.clean(params[:kingaku]), :currency => Sanitize.clean(params[:currency]), \
-						 :siharaisaki => Sanitize.clean(params[:siharaisaki]) , :shudan => Sanitize.clean(params[:shudan]), \
-                         :himoku => Sanitize.clean(params[:himoku]) 
+	@entry = Entries.new :mokuteki => Sanitize.clean(params[:mokuteki]), :date => Sanitize.clean(params[:date]),  :kingaku => Sanitize.clean(params[:kingaku]), :currency => Sanitize.clean(params[:currency]),  :siharaisaki => Sanitize.clean(params[:siharaisaki]) , :shudan => Sanitize.clean(params[:shudan]), :himoku => Sanitize.clean(params[:himoku])  
+#                        :mokuteki => Sanitize.clean(params[:mokuteki]), :date => Sanitize.clean(params[:date]), \
+#                        :kingaku => Sanitize.clean(params[:kingaku]), :currency => Sanitize.clean(params[:currency]), \
+#                        :siharaisaki => Sanitize.clean(params[:siharaisaki]) , :shudan => Sanitize.clean(params[:shudan]), \
+#                        :himoku => Sanitize.clean(params[:himoku]) 
 
 	@entry.save
 	redirect '/'
