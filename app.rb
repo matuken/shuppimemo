@@ -62,7 +62,7 @@ get '/month/:yyyymm' do
 		date_to = date_now + "-28"
 	  end
     end
-    @entries = Entries.filter(:date => date_from..date_to).all
+    @entries = Entries.filter(:date => date_from..date_to).order(:date).all
     @sum = Entries.filter(:date => date_from..date_to).sum(:kingaku)
 	haml :list
 end
@@ -87,7 +87,7 @@ get '/himoku/:himokuname' do
     end
 	@himoku = params[:himokuname]
     dataset = Entries.filter(:date => date_from..date_to)
-    @entries = dataset.filter(:himoku => params[:himokuname]).all
+    @entries = dataset.filter(:himoku => params[:himokuname]).order(:date).all
     @sum = dataset.filter(:himoku => params[:himokuname]).sum(:kingaku)
 	haml :himoku
 end
