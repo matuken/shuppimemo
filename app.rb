@@ -28,23 +28,43 @@ end
 
 get '/' do
 	@index = 'shuppiMemo - TOP'
-	@entries = Entries.all
+	date_now = timefmt(Time.now)
+	@date = date_now
+#   @entries = Entries.all
+    @entries = Entries.filter(:date => date_now).all
 	haml :index
 end
 
 get '/date/:yyyymmdd' do
 	@index = 'shuppiMemo - daily'
-	@date = params[:yyyymmdd]
-#   @entries = Entries.filter(:date => params[:yyyymmdd]).all
-    @entries = Entries.all
+	date_now = params[:yyyymmdd]
+	@date = date_now
+    @entries = Entries.filter(:date => date_now).all
+    @sum = Entries.filter(:date => date_now).sum(:kingaku)
+	haml :list
+end
+
+get '/month/:yyyymm' do
+	@index = 'shuppiMemo - monthly'
+	date_now = params[:yyyymm]
+	@date = date_now
+	date_from = date_now + "-01"
+	date_to = date_now + "-31"
+    @entries = Entries.filter(:date => date_from..date_to).all
+    @sum = Entries.filter(:date => date_from..date_to).sum(:kingaku)
 	haml :list
 end
 
 get '/himoku/:himokuname' do
 	@index = 'shuppiMemo - himoku(This month)'
-	@date = Time.now.strftime("%Y-%m")
+	date_now = Time.now.strftime("%Y-%m")
+	@date = date_now
+	date_from = date_now + "-01"
+	date_to = date_now + "-31"
 	@himoku = params[:himokuname]
-    @entries = Entries.all
+    dataset = Entries.filter(:date => date_from..date_to)
+    @entries = dataset.filter(:himoku => params[:himokuname]).all
+    @sum = dataset.filter(:himoku => params[:himokuname]).sum(:kingaku)
 	haml :himoku
 end
 
