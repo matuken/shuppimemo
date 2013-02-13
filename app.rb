@@ -50,14 +50,13 @@ get '/month/:yyyymm' do
 	@date = date_now
 	date_yyyymm = date_now.split(/-/)
 	date_from = date_now + "-01"
-	if date_yyyymm[1] in ["01", "03", "05", "07", "08", "10", "12"]
+	case date_yyyymm[1] 
+	when "01", "03", "05", "07", "08", "10", "12"
 	  date_to = date_now + "-31"
-    end
-	if date_yyyymm[1] in ["04", "06", "09", "11"]
+	when "04", "06", "09", "11"
 	  date_to = date_now + "-30"
-    end
-	if date_yyyymm[1] = "02"
-	  if date_yyyymm[0] % 4 = 0
+	when "02"
+	  if date_yyyymm[0].to_i % 4 == 0
 	    date_to = date_now + "-29"
 	  else
 		date_to = date_now + "-28"
