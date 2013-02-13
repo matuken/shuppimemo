@@ -38,9 +38,6 @@ end
 get '/date/:yyyymmdd' do
 	@index = 'shuppiMemo - daily'
 	date_now = params[:yyyymmdd]
-	date_yyyymmdd = date_now.split(/-/)
-	date_before = date_yyyymmdd[0] + "-" + date_yyyymmdd[1] + (date_yyyymmdd[2].to_i - 1).to_s
-	@date_b = date_before
 	@date = date_now
     @entries = Entries.filter(:date => date_now).all
     @sum = Entries.filter(:date => date_now).sum(:kingaku)
