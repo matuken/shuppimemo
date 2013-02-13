@@ -2,11 +2,16 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'haml'
-gem 'sqlite3'
-gem 'sequel'
 gem 'sanitize'
+gem 'heroku'
+gem 'sequel'
 
-group :development do
+group :production do
+	gem 'pg'
+end
+
+group :development, :test do
+    gem 'sqlite3'
 	gem 'sinatra-contrib'
 end
 

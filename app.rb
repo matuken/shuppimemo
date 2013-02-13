@@ -7,7 +7,7 @@ end
 
 #Sequel::Model.plugin(:schema)
 
-Sequel.sqlite('db/shuppiMemo.db')
+Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/shuppiMemo.db')
 class Entries < Sequel::Model
 	plugin :timestamps, :update_on_create => true
 #	unless table_exists?

@@ -2,8 +2,15 @@ require 'rubygems'
 require 'sinatra'
 require 'haml'
 require 'sequel'
-require 'sqlite3'
 require 'sanitize'
+ 
+if development?
+	require 'sqlite3'
+end
+
+if production?
+	require 'pg'
+end
 
 require './app.rb'
 
