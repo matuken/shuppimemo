@@ -108,10 +108,11 @@ end
 
 post '/update' do
 	@entry = Entries[params[:id]]
-	@entry.set({ :mokuteki => Sanitize.clean(params[:mokuteki]), :date => Sanitize.clean(params[:date]), \
-                 :kingaku => Sanitize.clean(params[:kingaku]), :currency => Sanitize.clean(params[:currency]), \
-		    	 :siharaisaki => Sanitize.clean(params[:siharaisaki]), :shudan => Sanitize.clean(params[:shudan]), \
-	             :himoku => Sanitize.clean(params[:himoku]) })
+	@entry.set({ :mokuteki => Sanitize.clean(params[:mokuteki]), :date => Sanitize.clean(params[:date]), :kingaku => Sanitize.clean(params[:kingaku]), :currency => Sanitize.clean(params[:currency]), :siharaisaki => Sanitize.clean(params[:siharaisaki]), :shudan => Sanitize.clean(params[:shudan]), :himoku => Sanitize.clean(params[:himoku]) })
+
+#                :kingaku => Sanitize.clean(params[:kingaku]), :currency => Sanitize.clean(params[:currency]), \
+#           	 :siharaisaki => Sanitize.clean(params[:siharaisaki]), :shudan => Sanitize.clean(params[:shudan]), \
+#                :himoku => Sanitize.clean(params[:himoku]) })
 
 	@entry.save
 	redirect '/'
