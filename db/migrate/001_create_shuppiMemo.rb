@@ -8,6 +8,7 @@ class CreateEntries < Sequel::Migration
 	  String        :currency
 	  String        :siharaisaki
 	  String        :shudan
+	  String        :himoku
       DateTime      :created_at
 	  DateTime      :updated_at
     end
