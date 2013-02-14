@@ -48,20 +48,8 @@ get '/month/:yyyymm' do
 	@index = 'shuppiMemo - monthly'
 	date_now = params[:yyyymm]
 	@date = date_now
-	date_yyyymm = date_now.split(/-/)
 	date_from = date_now + "-01"
-	case date_yyyymm[1] 
-	when "01", "03", "05", "07", "08", "10", "12"
-	  date_to = date_now + "-31"
-	when "04", "06", "09", "11"
-	  date_to = date_now + "-30"
-	when "02"
-	  if date_yyyymm[0].to_i % 4 == 0
-	    date_to = date_now + "-29"
-	  else
-		date_to = date_now + "-28"
-	  end
-    end
+	date_to = adddate(date_now)
     @entries = Entries.filter(:date => date_from..date_to).order(:date).all
     @sum = Entries.filter(:date => date_from..date_to).sum(:kingaku)
 	haml :list
@@ -71,20 +59,7 @@ get '/himoku/:himokuname' do
 	@index = 'shuppiMemo - himoku(This month)'
 	date_now = Time.now.strftime("%Y-%m")
 	@date = date_now
-#	date_yyyymm = date_now.split(/-/)
     date_from = date_now + "-01"
-#	case date_yyyymm[1] 
-#	when "01", "03", "05", "07", "08", "10", "12"
-#	  date_to = date_now + "-31"
-#	when "04", "06", "09", "11"
-#	  date_to = date_now + "-30"
-#	when "02"
-#	  if date_yyyymm[0].to_i % 4 == 0
-#	    date_to = date_now + "-29"
-#	  else
-#		date_to = date_now + "-28"
-#	  end
-#   end
 	date_to = adddate(date_now)
 	@himoku = params[:himokuname]
     dataset = Entries.filter(:date => date_from..date_to)
@@ -97,20 +72,7 @@ get '/himoku/:himokuname/:yyyymm' do
 	@index = 'shuppiMemo - himoku'
 	date_now = params[:yyyymm]
 	@date = date_now
-#   date_yyyymm = date_now.split(/-/)
 	date_from = date_now + "-01"
-#   case date_yyyymm[1] 
-#	when "01", "03", "05", "07", "08", "10", "12"
-#	  date_to = date_now + "-31"
-#	when "04", "06", "09", "11"
-#	  date_to = date_now + "-30"
-#	when "02"
-#	  if date_yyyymm[0].to_i % 4 == 0
-#	    date_to = date_now + "-29"
-#	  else
-#		date_to = date_now + "-28"
-#	  end
-#   end
 	date_to = adddate(date_now)
 	@himoku = params[:himokuname]
     dataset = Entries.filter(:date => date_from..date_to)
