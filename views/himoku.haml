@@ -21,10 +21,10 @@
               %input{ type: "hidden", name: "siharaisaki", value: "#{entry.siharaisaki}" }
               %input{ type: "hidden", name: "shudan", value: "#{entry.shudan}" }
               %input{ type: "hidden", name: "himoku", value: "#{entry.himoku}" }
-              %input{ type: "submit", value: "meisai", class: "btn btn-large"}
+              %input{ type: "submit", value: "meisai", class: "btn primary"}
     %p
       合計金額 #{@sum}
     %p
       %form{ action: "/", method: "get"}
-        %input{ type: "submit", value: "top", class: "btn btn-large"}
+        %input{ type: "submit", value: "top", class: "btn primary"}
 
