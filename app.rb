@@ -81,6 +81,33 @@ get '/himoku/:himokuname/:yyyymm' do
 	haml :himoku
 end
 
+get '/payby/:shudanname' do
+	@index = 'shuppiMemo - payby(This month)'
+	date_now = Time.now.strftime("%Y-%m")
+	@date = date_now
+    date_from = date_now + "-01"
+	date_to = adddate(date_now)
+	@himoku = params[:shudanname]
+    dataset = Entries.filter(:date => date_from..date_to)
+    @entries = dataset.filter(:shudan => params[:shudanname]).order(:date).all
+    @sum = dataset.filter(:shudan => params[:shudanname]).sum(:kingaku)
+	haml :himoku
+end
+
+get '/payby/:shudanname/:yyyymm' do
+	@index = 'shuppiMemo - payby'
+	date_now = params[:yyyymm]
+	@date = date_now
+	date_from = date_now + "-01"
+	date_to = adddate(date_now)
+	@himoku = params[:shudanname]
+    dataset = Entries.filter(:date => date_from..date_to)
+    @entries = dataset.filter(:shudan => params[:shudanname]).order(:date).all
+    @sum = dataset.filter(:shudan => params[:shudanname]).sum(:kingaku)
+	haml :himoku
+end
+
+
 post '/meisai' do
 	@index = 'shuppiMemo - meisai'
 	@id = params[:id]
