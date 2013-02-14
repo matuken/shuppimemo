@@ -28,7 +28,7 @@ end
 
 get '/' do
 	@index = 'shuppiMemo - TOP'
-	date_now = timefmt(Time.now)
+	date_now = timefmt(Time.now.utc + 3600 * 9)
 	@date = date_now
 #   @entries = Entries.all
     @entries = Entries.filter(:date => date_now).all
