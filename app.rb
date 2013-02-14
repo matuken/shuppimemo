@@ -57,7 +57,8 @@ end
 
 get '/himoku/:himokuname' do
 	@index = 'shuppiMemo - himoku(This month)'
-	date_now = Time.now.strftime("%Y-%m")
+	date_tmp = Time.now.utc + 3600 * 9
+	date_now = date_tmp.strftime("%Y-%m")
 	@date = date_now
     date_from = date_now + "-01"
 	date_to = adddate(date_now)
@@ -83,7 +84,8 @@ end
 
 get '/payby/:shudanname' do
 	@index = 'shuppiMemo - payby(This month)'
-	date_now = Time.now.strftime("%Y-%m")
+	date_tmp = Time.now.utc + 3600 * 9
+	date_now = date_tmp.strftime("%Y-%m")
 	@date = date_now
     date_from = date_now + "-01"
 	date_to = adddate(date_now)
