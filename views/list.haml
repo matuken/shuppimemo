@@ -2,6 +2,9 @@
 %html
   %head
     %title #{@index}
+    %link{:href => "bootstrap/css/bootstrap.css",:rel => "stylesheet"}
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
+    %script{:src => "bootstrap/js/bootstrap.js"}
   %body
     %h1 #{@index} #{@date}
     %table
@@ -18,10 +21,10 @@
               %input{ type: "hidden", name: "siharaisaki", value: "#{entry.siharaisaki}" }
               %input{ type: "hidden", name: "shudan", value: "#{entry.shudan}" }
               %input{ type: "hidden", name: "himoku", value: "#{entry.himoku}" }
-              %input{ type: "submit", value: "meisai"}
+              %input{ type: "submit", value: "meisai", class: "btn"}
     %p
       合計金額　#{@sum}
     %p
       %form{ action: "/", method: "get"}
-        %input{ type: "submit", value: "top"}
+        %input{ type: "submit", value: "top", class: "btn"}
 

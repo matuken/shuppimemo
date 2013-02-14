@@ -2,6 +2,9 @@
 %html
   %head
     %title #{@index}
+    %link{:href => "bootstrap/css/bootstrap.css",:rel => "stylesheet"}
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
+    %script{:src => "bootstrap/js/bootstrap.js"}
   %body
     %table
       %form{ action: "/delete", method: "post"}
@@ -43,11 +46,11 @@
             %input{ type: "textfield", name: "himoku", value: "#{@himoku}"}
         %tr
           %td
-            %input{ type: "submit", value: "delete"}
+            %input{ type: "submit", value: "delete", class: "btn"}
           %td
     %table
       %form{ action: "/", method: "get"}
         %tr
           %td
-            %input{ type: "submit", value: "return"}
+            %input{ type: "submit", value: "return", class: "btn"}
 

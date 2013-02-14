@@ -2,6 +2,9 @@
 %html
   %head
     %title #{@index}
+    %link{:href => "bootstrap/css/bootstrap.css",:rel => "stylesheet"}
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
+    %script{:src => "bootstrap/js/bootstrap.js"}
   %body
     %table
       %form{ action: "/update", method: "post"}
@@ -43,7 +46,7 @@
             %input{ type: "textfield", name: "himoku", value: "#{@himoku}"}
         %tr
           %td
-            %input{ type: "submit", value: "update"}
+            %input{ type: "submit", value: "update", class: "btn"}
           %td
       %table
         %form{ action: "/delkaku", method: "post"}
@@ -57,6 +60,6 @@
               %input{ type: "hidden", name: "siharaisaki", value: "#{@siharaisaki}"}
               %input{ type: "hidden", name: "shudan", value: "#{@shudan}"}
               %input{ type: "hidden", name: "himoku", value: "#{@himoku}"}
-              %input{ type: "submit", value: "delete"}
+              %input{ type: "submit", value: "delete", class: "btn"}
             %td
 
