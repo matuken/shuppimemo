@@ -20,7 +20,7 @@ class Entries < Sequel::Model
 #			string :siharaisaki
 #			string :shudan
 #			timestamp :created_at
-#3			timestamp :updated_at
+#			timestamp :updated_at
 #		end
 #		create_table
 #end
